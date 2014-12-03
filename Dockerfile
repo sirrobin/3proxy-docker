@@ -16,7 +16,7 @@ RUN make -f Makefile.Linux
 RUN make -f Makefile.Linux install
 
 # Add config file
-ADD 3proxy.cfg /etc/3proxy.cfg
+ADD 3proxy.cfg /etc/3proxy/3proxy.cfg
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
