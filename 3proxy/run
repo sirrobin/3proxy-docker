@@ -1,0 +1,7 @@
+#!/bin/sh
+
+##
+# Runit run script for 3proxy
+#
+
+exec /usr/local/bin/3proxy /etc/3proxy.cfg
