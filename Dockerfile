@@ -1,10 +1,17 @@
 # Version: 0.0.1
 FROM phusion/baseimage:0.9.15
 
+# Set correct environment variables.
+ENV HOME /root
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
+
+RUN /usr/sbin/enable_insecure_key
 
 # Install packages
-RUN apt-get update
-RUN apt-get install -y build-essential libevent-dev libssl-dev wget 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential libevent-dev libssl-dev wget 
 
 # Install 3rpoxy
 WORKDIR /usr/src
@@ -29,5 +36,7 @@ RUN update-service --add /etc/sv/3proxy
 EXPOSE 3128
 
 ADD run.sh /usr/local/sbin/run
+
 ENTRYPOINT ["/sbin/my_init", "--", "/usr/local/sbin/run"]
+
 
