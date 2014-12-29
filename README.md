@@ -1,17 +1,17 @@
 About
 =========
 
-It's docker created for fast run 3proxy anonymous instance with basic config.
+Quick 3proxy container based on phusion baseimage
 
 Usage
 =========
 
-#### Simple:
-```sh
-docker run -d --name='3proxy' -P carcinogen75/3proxy
-```
-#### Advance:
-Use custom 3proxy.cfg and port (place your custom 3proxy.cfg at  ~/3proxy_cfg_local_folder)
-```sh
-docker run -d --name='3proxy' -v ~/3proxy_cfg_local_folder:/etc/3proxy -p 40123:8080 carcinogen75/3proxy
-```
+#edit 3proxy.cg to use your own user/pass
+
+# build it
+docker build -t 3proxy .
+
+
+# run it. change listen port as needed
+
+docker run --restart=always --name 3proxy -p 80:3128 -d 3proxy
